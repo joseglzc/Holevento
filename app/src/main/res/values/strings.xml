@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Holevento</string>
+    <string name="cambioContrasenya"><u>¿Has olvidado la contraseña?</u></string>
 </resources>
