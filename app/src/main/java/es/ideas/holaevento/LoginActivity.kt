@@ -36,6 +36,8 @@ class LoginActivity : AppCompatActivity() {
 
             if(compruebaVacio(email, pass)) {
                 loguear(email, pass)
+            } else {
+                Toast.makeText(applicationContext, "Rellena los campos", Toast.LENGTH_LONG).show()
             }
         }
 
@@ -53,13 +55,25 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 } else {
-                    Toast.makeText(applicationContext, "Se ha producido un error al iniciar sesión", Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext, "Credenciales incorrectas", Toast.LENGTH_LONG).show()
                 }
             }
     }
 
     private fun compruebaVacio(email: String, pass: String): Boolean {
-        return email.isNotEmpty() && pass.isNotEmpty()
+        if (email.isEmpty() && pass.isEmpty()) {
+            Toast.makeText(applicationContext, "Rellena los campos", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (email.isEmpty()) {
+            loginEmail.setError("Campo vacío")
+            return false
+        }
+        if (pass.isEmpty()) {
+            loginPass.setError("Campo vacío")
+            return false
+        }
+        return true
     }
 
 
