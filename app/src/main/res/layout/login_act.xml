@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
-        android:text="Correo electrónico"
+        android:text="@string/correo"
         app:layout_constraintBottom_toTopOf="@+id/loginEmail"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="@+id/loginEmail" />
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="Iniciar Sesión"
+        android:text="@string/btnIniciarSesion"
         app:layout_constraintEnd_toEndOf="@+id/loginPass"
         app:layout_constraintStart_toStartOf="@+id/loginPass"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="Registrarse"
+        android:text="@string/btnRegistrarse"
         app:layout_constraintEnd_toEndOf="@+id/btnRegistro"
         app:layout_constraintStart_toStartOf="@+id/btnRegistro"
         app:layout_constraintTop_toBottomOf="@+id/btnRegistro" />
@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Contraseña"
+        android:text="@string/contrasenya"
         app:layout_constraintStart_toStartOf="@+id/loginEmail"
         app:layout_constraintTop_toBottomOf="@+id/loginEmail" />
 
@@ -61,6 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:ems="10"
+        android:hint="@string/correo"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/imageView"
@@ -74,7 +75,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@raw/logo_holevento" />
+        app:srcCompat="@drawable/logo_holevento"
+        tools:srcCompat="@drawable/logo_holevento" />
 
     <TextView
         android:id="@+id/textView3"
