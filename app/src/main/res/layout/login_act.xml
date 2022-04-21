@@ -23,7 +23,7 @@
         android:text="@string/btnIniciarSesion"
         app:layout_constraintEnd_toEndOf="@+id/loginPass"
         app:layout_constraintStart_toStartOf="@+id/loginPass"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/tvOlvidadoPass" />
 
     <Button
         android:id="@+id/btnRegistrarse"
@@ -50,6 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:ems="10"
+        android:hint="@string/contrasenya"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/loginEmail"
         app:layout_constraintStart_toStartOf="@+id/loginEmail"
@@ -79,7 +80,7 @@
         tools:srcCompat="@drawable/logo_holevento" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tvOlvidadoPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"

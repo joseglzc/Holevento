@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -16,11 +17,13 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var loginPass: EditText
     private lateinit var btnIniciarSesion: Button
     private lateinit var btnRegistrarse: Button
+    private lateinit var tvReestrableceer: TextView
 
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
         setContentView(R.layout.login_act)
 
         auth = Firebase.auth
@@ -29,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
         loginPass = findViewById(R.id.loginPass)
         btnIniciarSesion = findViewById(R.id.btnRegistro)
         btnRegistrarse = findViewById(R.id.btnRegistrarse)
+        tvReestrableceer = findViewById(R.id.tvOlvidadoPass)
 
         btnIniciarSesion.setOnClickListener {
             val email = loginEmail.text.toString()
@@ -43,6 +47,11 @@ class LoginActivity : AppCompatActivity() {
 
         btnRegistrarse.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
+            finish()
+        }
+
+        tvReestrableceer.setOnClickListener{
+            startActivity(Intent(this, RecoveryPassActivity::class.java))
             finish()
         }
 
@@ -75,6 +84,7 @@ class LoginActivity : AppCompatActivity() {
         }
         return true
     }
+
 
 
 }

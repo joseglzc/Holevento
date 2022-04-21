@@ -8,4 +8,5 @@
     <string name="usuario">User</string>
     <string name="telefono">Phone number</string>
     <string name="contrasenyaRep">Repeat Password</string>
+    <string name="btnRecoveryPass">Recovery</string>
 </resources>

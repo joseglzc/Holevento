@@ -1,5 +1,6 @@
 package es.ideas.holaevento
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
@@ -25,6 +26,7 @@ class RegisterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
         setContentView(R.layout.register_act)
 
         auth = Firebase.auth
@@ -47,7 +49,13 @@ class RegisterActivity : AppCompatActivity() {
             val passR = registerPassR.text.toString()
 
             if (compruebaVacio(email, usuario, telefono, id, pass, passR)) {
-                registrar(email, pass)
+                try {
+                    registrar(email, pass)
+                    Toast.makeText(this, "Usuario registrado.", Toast.LENGTH_LONG).show()
+                    startActivity(Intent(this, LoginActivity::class.java))
+                    finish()
+                }catch (e: java.lang.Exception){e.toString()}
+
             }
         }
 
@@ -149,5 +157,11 @@ class RegisterActivity : AppCompatActivity() {
         }
         return false
     }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(Intent(this, LoginActivity::class.java))
+        finish()
+    }
+
 
 }
