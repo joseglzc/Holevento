@@ -9,4 +9,18 @@
     <string name="telefono">Número de teléfono</string>
     <string name="contrasenyaRep">Repita la contraseña</string>
     <string name="btnRecoveryPass">Reestablecer</string>
+
+
+    <string-array name="planets_array">
+        <item>Provincia</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+
+
 </resources>

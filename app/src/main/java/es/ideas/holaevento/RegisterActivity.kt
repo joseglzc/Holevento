@@ -1,13 +1,19 @@
 package es.ideas.holaevento
 
+import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
+import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.*
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 
 
@@ -16,35 +22,67 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var registerEmail: EditText
     private lateinit var registerUsuario: EditText
     private lateinit var registerTelefono: EditText
-    private lateinit var tBtnID: ToggleButton
-    private lateinit var registerID: EditText
+    private lateinit var registerProvincia: Spinner
     private lateinit var registerPass: EditText
     private lateinit var registerPassR: EditText
     private lateinit var btnRegistro: Button
 
     private lateinit var auth: FirebaseAuth
 
+    @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         setContentView(R.layout.register_act)
+
+        val db = Firebase.firestore
+        /*
+        db.collection("Provincias")
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    Log.d(TAG, "${document.id} => ${document.data}")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d(TAG, "Error getting documents: ", exception)
+            }
+
+         */
+
+        //Hay que mirar los dos a ver con cual lo conseguimos !!!
+
+        val docRef = db.collection("Provincias").document("nombres")
+        docRef.get().addOnSuccessListener { documentSnapshot ->
+            val provincia = documentSnapshot.toObject<Provincia>()
+            Log.d("PROVINCIA", "$documentSnapshot")
+            Log.d("PROVINCIA", "$provincia")
+        }
+
+
 
         auth = Firebase.auth
 
         registerEmail = findViewById(R.id.registerEmail)
         registerUsuario = findViewById(R.id.registerUsuario)
         registerTelefono = findViewById(R.id.registerTelefono)
-        tBtnID = findViewById(R.id.tBtnID)
-        registerID = findViewById(R.id.registerID)
         registerPass = findViewById(R.id.registerPass)
         registerPassR = findViewById(R.id.registerPassR)
         btnRegistro = findViewById(R.id.btnRegistro)
+
+        registerProvincia = findViewById(R.id.provincia)
+
+
+        ArrayAdapter.createFromResource(this, R.array.planets_array, android.R.layout.simple_spinner_item).also {
+            adapter-> adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            registerProvincia.adapter = adapter
+        }
 
         btnRegistro.setOnClickListener {
             val email = registerEmail.text.toString()
             val usuario = registerUsuario.text.toString()
             val telefono = registerTelefono.text.toString()
-            val id = registerID.text.toString()
+            val id = registerProvincia.toString()
             val pass = registerPass.text.toString()
             val passR = registerPassR.text.toString()
 
@@ -59,13 +97,6 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
-        tBtnID.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                registerID.setHint("CIF")
-            } else {
-                registerID.setHint("DNI")
-            }
-        }
 
     }
 
@@ -136,10 +167,6 @@ class RegisterActivity : AppCompatActivity() {
             registerTelefono.setError("Campo vacío")
             return false
         }
-        if (id.isEmpty()) {
-            registerID.setError("Campo vacío")
-            return false
-        }
         if (pass.isEmpty()) {
             registerPass.setError("Campo vacío")
             return false
@@ -162,6 +189,7 @@ class RegisterActivity : AppCompatActivity() {
         startActivity(Intent(this, LoginActivity::class.java))
         finish()
     }
+
 
 
 }
