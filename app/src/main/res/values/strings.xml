@@ -9,6 +9,7 @@
     <string name="telefono">Número de teléfono</string>
     <string name="contrasenyaRep">Repita la contraseña</string>
     <string name="btnRecoveryPass">Reestablecer</string>
+    <string name="registroEmpresa"><u>Cuenta de empresa</u></string>
 
 
     <string-array name="planets_array">

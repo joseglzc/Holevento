@@ -1,17 +1,14 @@
 package es.ideas.holaevento
 
 import android.annotation.SuppressLint
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
-import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -28,14 +25,17 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var btnRegistro: Button
 
     private lateinit var auth: FirebaseAuth
+    var db = Firebase.firestore
 
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
-        setContentView(R.layout.register_act)
+        setContentView(R.layout.register_business_user_act)
 
-        val db = Firebase.firestore
+
+        var provincias:ArrayList<Provincia> = ArrayList()
+
         /*
         db.collection("Provincias")
             .get()
@@ -53,9 +53,9 @@ class RegisterActivity : AppCompatActivity() {
         //Hay que mirar los dos a ver con cual lo conseguimos !!!
 
         val docRef = db.collection("Provincias").document("nombres")
-        docRef.get().addOnSuccessListener { documentSnapshot ->
-            val provincia = documentSnapshot.toObject<Provincia>()
-            Log.d("PROVINCIA", "$documentSnapshot")
+        docRef.get().addOnSuccessListener { task ->
+            val provincia = task.toObject<Provincia>()
+            Log.d("PROVINCIA", "$task")
             Log.d("PROVINCIA", "$provincia")
         }
 
@@ -99,6 +99,7 @@ class RegisterActivity : AppCompatActivity() {
 
 
     }
+
 
     private fun registrar(email: String, pass: String) {
         auth.createUserWithEmailAndPassword(email, pass)
@@ -193,3 +194,4 @@ class RegisterActivity : AppCompatActivity() {
 
 
 }
+
